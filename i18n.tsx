@@ -31,6 +31,7 @@ const translations: Record<Language, Translation> = {
       export: "Export",
       table: {
         spool: "Spool",
+        id : "ID" ,
         nameBrand: "Name / Brand",
         material: "Material",
         color: "Color",
@@ -129,6 +130,7 @@ const translations: Record<Language, Translation> = {
       export: "导出",
       table: {
         spool: "图片",
+        id : "ID" ,
         nameBrand: "名称 / 品牌",
         material: "材质",
         color: "颜色",
@@ -227,6 +229,7 @@ const translations: Record<Language, Translation> = {
       export: "Exportar",
       table: {
         spool: "Carrete",
+        id : "ID",
         nameBrand: "Nombre / Marca",
         material: "Material",
         color: "Color",
@@ -325,6 +328,7 @@ const translations: Record<Language, Translation> = {
       export: "Exportieren",
       table: {
         spool: "Spule",
+        id : "ID",
         nameBrand: "Name / Marke",
         material: "Material",
         color: "Farbe",

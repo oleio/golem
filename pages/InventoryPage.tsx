@@ -198,18 +198,20 @@ const handleDelete = async (filament: Filament) => {
             <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                     <thead>
-                        <tr className="bg-slate-50 dark:bg-surface-dark border-b border-slate-200 dark:border-border-dark text-slate-500 dark:text-text-secondary text-xs uppercase tracking-wider font-semibold">
-                            <th className="p-4 w-12 flex items-center justify-center">
-                                <input type="checkbox" className="rounded border-slate-200 dark:border-slate-700 bg-white dark:bg-background-dark text-primary focus:ring-0 focus:ring-offset-0 size-4" />
-                            </th>
-                            <th className="p-4 font-medium">{t.inventory.table.spool}</th>
-                            <th className="p-4 font-medium min-w-[140px]">{t.inventory.table.nameBrand}</th>
-                            <th className="p-4 font-medium">{t.inventory.table.material}</th>
-                            <th className="p-4 font-medium">{t.inventory.table.color}</th>
-                            <th className="p-4 font-medium">{t.inventory.table.weight}</th>
-                            <th className="p-4 font-medium">{t.inventory.table.status}</th>
-                            <th className="p-4 font-medium text-center">{t.inventory.table.actions}</th>
-                        </tr>
+                    <tr className="bg-slate-50 dark:bg-surface-dark border-b border-slate-200 dark:border-border-dark text-slate-500 dark:text-text-secondary text-xs uppercase tracking-wider font-semibold">
+                        <th className="p-4 w-12 flex items-center justify-center">
+                            <input type="checkbox"
+                                   className="rounded border-slate-200 dark:border-slate-700 bg-white dark:bg-background-dark text-primary focus:ring-0 focus:ring-offset-0 size-4"/>
+                        </th>
+                        <th className="p-4 font-medium">{t.inventory.table.spool}</th>
+                        <th className="p-4 font-medium min-w-[140px]">{t.inventory.table.id}</th>
+                        <th className="p-4 font-medium min-w-[140px]">{t.inventory.table.nameBrand}</th>
+                        <th className="p-4 font-medium">{t.inventory.table.material}</th>
+                        <th className="p-4 font-medium">{t.inventory.table.color}</th>
+                        <th className="p-4 font-medium">{t.inventory.table.weight}</th>
+                        <th className="p-4 font-medium">{t.inventory.table.status}</th>
+                        <th className="p-4 font-medium text-center">{t.inventory.table.actions}</th>
+                    </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200 dark:divide-border-dark">
                         {filteredFilaments.map((f) => {

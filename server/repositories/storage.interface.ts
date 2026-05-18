@@ -57,4 +57,9 @@ export interface IStorageRepository {
    * 初始化存储（例如：创建目录、表等）
    */
   initialize(): Promise<void>;
+
+  /**
+   * 获取下一个序号
+   */
+  getNextSequence(): Promise<any>;
 }

@@ -11,6 +11,7 @@ import type { IStorageRepository } from './storage.interface.js';
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), 'data');
 const FILAMENTS_FILE = path.join(DATA_DIR, 'filaments.json');
 const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json');
+const SEQUENCE_FILE = path.join(DATA_DIR, 'sequence.json');
 
 export class JsonStorageRepository implements IStorageRepository {
   /**
@@ -29,6 +30,15 @@ export class JsonStorageRepository implements IStorageRepository {
         lastUpdated: new Date().toISOString()
       };
       await fs.writeFile(FILAMENTS_FILE, JSON.stringify(initialData, null, 2));
+    }
+
+    // 如果序列文件不存在，创建初始文件
+    if (!fsSync.existsSync(SEQUENCE_FILE)) {
+      const initialData = {
+        id: 0,
+        lastUpdated: new Date().toISOString()
+      };
+      await fs.writeFile(SEQUENCE_FILE, JSON.stringify(initialData, null, 2));
     }
   }
 
@@ -155,6 +165,31 @@ export class JsonStorageRepository implements IStorageRepository {
     } catch (error) {
       console.error('Error writing settings:', error);
       return false;
+    }
+  }
+
+  async getNextSequence(): Promise<any> {
+
+    try {
+      await this.initialize();
+
+      if (!fsSync.existsSync(SEQUENCE_FILE)) {
+        return null; // 返回 null 表示文件不存在
+      }
+
+      const content = await fs.readFile(SEQUENCE_FILE, 'utf-8');
+      const sequenceData = JSON.parse(content);
+      const id = sequenceData.id;
+      const nextVal = id + 1;
+      const data = {
+        id : nextVal,
+        lastUpdated: new Date().toISOString()
+      };
+      await fs.writeFile(SEQUENCE_FILE, JSON.stringify(data, null, 2));
+      return nextVal;
+    } catch (error) {
+      console.error('Error writing sequence:', error);
+      return null;
     }
   }
 }

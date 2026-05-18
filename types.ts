@@ -59,6 +59,7 @@ export interface Translation {
     export: string;
     table: {
       spool: string;
+      id : string,
       nameBrand: string;
       material: string;
       color: string;
