@@ -59,7 +59,7 @@ const InventoryPage = () => {
     setEditingFilament(filament);
     setIsModalOpen(true);
   };
-const handleCopy = (filament: Filament) => {
+const handleCopy = async (filament: Filament) => {
     // 无需状态
     setLoading(true);
     await copyFilament(filament.id);
