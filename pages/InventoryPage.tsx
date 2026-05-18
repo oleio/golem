@@ -3,7 +3,7 @@ import { useI18n } from '../i18n';
 import { FilamentStatus, Filament } from '../types';
 import FilamentModal from '../components/FilamentModal';
 import DeductModal from '../components/DeductModal';
-import { fetchFilaments, createFilament, updateFilament as updateFilamentAPI, copyFilament , deductFilamentWeight } from '../lib/api';
+import { fetchFilaments, createFilament, updateFilament as updateFilamentAPI, copyFilament , deleteFilament , deductFilamentWeight } from '../lib/api';
 
 const InventoryPage = () => {
   const { t } = useI18n();
@@ -63,6 +63,15 @@ const handleCopy = async (filament: Filament) => {
     // 无需状态
     setLoading(true);
     await copyFilament(filament.id);
+    const data = await fetchFilaments();
+    setFilaments(data);
+    setLoading(false);
+};
+
+const handleDelete = async (filament: Filament) => {
+    // 无需状态
+    setLoading(true);
+    await deleteFilament(filament.id);
     const data = await fetchFilaments();
     setFilaments(data);
     setLoading(false);
@@ -283,6 +292,7 @@ const handleCopy = async (filament: Filament) => {
                                                 <span className="material-symbols-outlined text-[20px]">stack</span>
                                             </button>
                                             <button
+                                                onClick={() => handleDelete(f)}
                                                 className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-red-50 dark:hover:bg-red-500/20 hover:text-red-600 dark:hover:text-red-400 transition-colors shadow-sm">
                                                 <span className="material-symbols-outlined text-[20px]">delete</span>
                                             </button>
