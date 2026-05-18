@@ -36,6 +36,7 @@ export function applyStatusToFilaments(filaments: any[], settings: Settings): an
 
 /**
  * 生成新的耗材 ID
+ * 已废弃
  */
 export function generateFilamentId(): string {
   return Date.now().toString();

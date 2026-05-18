@@ -71,7 +71,7 @@ export async function addFilament(filament) {
         // 准备新耗材数据
         const newFilament = {
             ...filament,
-            id: filament.id || generateFilamentId(),
+            id: filament.id || await jsonStorage.getNextSequence(),
             status: calculateFilamentStatus(filament.weightRemaining, filament.weightTotal, settings)
         };
         return await storage.addFilament(newFilament);

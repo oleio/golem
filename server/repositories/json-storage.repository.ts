@@ -186,7 +186,7 @@ export class JsonStorageRepository implements IStorageRepository {
         lastUpdated: new Date().toISOString()
       };
       await fs.writeFile(SEQUENCE_FILE, JSON.stringify(data, null, 2));
-      return nextVal;
+      return nextVal + '';
     } catch (error) {
       console.error('Error writing sequence:', error);
       return null;
