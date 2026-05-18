@@ -233,41 +233,62 @@ const handleDelete = async (filament: Filament) => {
                              }
 
                             return (
-                                <tr key={f.id} className="group hover:bg-slate-50 dark:hover:bg-surface-dark/50 transition-colors">
+                                <tr key={f.id}
+                                    className="group hover:bg-slate-50 dark:hover:bg-surface-dark/50 transition-colors">
                                     <td className="p-4 flex items-center justify-center">
-                                        <input type="checkbox" className="rounded border-slate-200 dark:border-slate-700 bg-white dark:bg-background-dark text-primary focus:ring-0 focus:ring-offset-0 size-4" />
+                                        <input type="checkbox"
+                                               className="rounded border-slate-200 dark:border-slate-700 bg-white dark:bg-background-dark text-primary focus:ring-0 focus:ring-offset-0 size-4"/>
                                     </td>
                                     <td className="p-4">
-                                        <div className="size-12 rounded-lg bg-cover bg-center border border-slate-200 dark:border-border-dark" style={{ backgroundImage: `url(${f.imageUrl})` }}></div>
+                                        <div
+                                            className="size-12 rounded-lg bg-cover bg-center border border-slate-200 dark:border-border-dark"
+                                            style={{backgroundImage: `url(${f.imageUrl})`}}></div>
                                     </td>
                                     <td className="p-4">
                                         <div className="flex flex-col">
-                                            <span className="text-slate-900 dark:text-white text-sm font-medium">{f.name}</span>
-                                            <span className="text-slate-500 dark:text-text-secondary text-xs">{f.brand}</span>
+                                            <span
+                                                className="text-slate-900 dark:text-white text-sm font-medium">{f.id}</span>
                                         </div>
                                     </td>
                                     <td className="p-4">
-                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium border ${badgeClass}`}>
+                                        <div className="flex flex-col">
+                                            <span
+                                                className="text-slate-900 dark:text-white text-sm font-medium">{f.name}</span>
+                                            <span
+                                                className="text-slate-500 dark:text-text-secondary text-xs">{f.brand}</span>
+                                        </div>
+                                    </td>
+                                    <td className="p-4">
+                                        <span
+                                            className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium border ${badgeClass}`}>
                                             {f.material}
                                         </span>
                                     </td>
                                     <td className="p-4">
-                                         <div className="flex items-center gap-2">
-                                            <div className="size-4 rounded-full border border-slate-200 dark:border-white/10 shadow-sm" style={{ backgroundColor: f.colorHex }}></div>
-                                            <span className="text-slate-700 dark:text-white text-sm hidden lg:inline">{f.colorName}</span>
+                                        <div className="flex items-center gap-2">
+                                            <div
+                                                className="size-4 rounded-full border border-slate-200 dark:border-white/10 shadow-sm"
+                                                style={{backgroundColor: f.colorHex}}></div>
+                                            <span
+                                                className="text-slate-700 dark:text-white text-sm hidden lg:inline">{f.colorName}</span>
                                         </div>
                                     </td>
                                     <td className="p-4">
                                         <div className="flex flex-col gap-1 w-24">
-                                            <span className="text-slate-900 dark:text-white text-sm font-mono">{f.weightRemaining}g</span>
-                                            <div className="h-1.5 w-full bg-slate-200 dark:bg-border-dark rounded-full overflow-hidden">
-                                                <div className={`h-full rounded-full ${f.status === FilamentStatus.Critical ? 'bg-red-500' : 'bg-emerald-500'}`} style={{ width: `${percent}%` }}></div>
+                                            <span
+                                                className="text-slate-900 dark:text-white text-sm font-mono">{f.weightRemaining}g</span>
+                                            <div
+                                                className="h-1.5 w-full bg-slate-200 dark:bg-border-dark rounded-full overflow-hidden">
+                                                <div
+                                                    className={`h-full rounded-full ${f.status === FilamentStatus.Critical ? 'bg-red-500' : 'bg-emerald-500'}`}
+                                                    style={{width: `${percent}%`}}></div>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="p-4">
                                         <div className={`flex items-center gap-1.5 text-sm font-medium ${statusColor}`}>
-                                            <span className={`material-symbols-outlined text-[18px] ${statusIcon === 'check_circle' ? 'fill' : ''}`}>{statusIcon}</span>
+                                            <span
+                                                className={`material-symbols-outlined text-[18px] ${statusIcon === 'check_circle' ? 'fill' : ''}`}>{statusIcon}</span>
                                             {t.inventory.status[f.status]}
                                         </div>
                                     </td>
@@ -309,17 +330,17 @@ const handleDelete = async (filament: Filament) => {
         </div>
 
       </div>
-      <FilamentModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onSave={handleSaveFilament}
-        filament={editingFilament}
-      />
-      <DeductModal
-        isOpen={isDeductModalOpen}
-        onClose={handleCloseDeductModal}
-        onDeduct={handleConfirmDeduct}
-        filament={deductingFilament}
+        <FilamentModal
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            onSave={handleSaveFilament}
+            filament={editingFilament}
+        />
+        <DeductModal
+            isOpen={isDeductModalOpen}
+            onClose={handleCloseDeductModal}
+            onDeduct={handleConfirmDeduct}
+            filament={deductingFilament}
       />
     </div>
   );
