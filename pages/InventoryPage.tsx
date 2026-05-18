@@ -204,7 +204,7 @@ const handleDelete = async (filament: Filament) => {
                                    className="rounded border-slate-200 dark:border-slate-700 bg-white dark:bg-background-dark text-primary focus:ring-0 focus:ring-offset-0 size-4"/>
                         </th>
                         <th className="p-4 font-medium">{t.inventory.table.spool}</th>
-                        <th className="p-4 font-medium min-w-[140px]">{t.inventory.table.id}</th>
+                        <th className="p-4 font-medium">{t.inventory.table.id}</th>
                         <th className="p-4 font-medium min-w-[140px]">{t.inventory.table.nameBrand}</th>
                         <th className="p-4 font-medium">{t.inventory.table.material}</th>
                         <th className="p-4 font-medium">{t.inventory.table.color}</th>
