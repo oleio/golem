@@ -151,6 +151,28 @@ router.post('/filaments/:id/deduct', authMiddleware, async (req, res) => {
   }
 });
 
+// POST /api/filaments/:id/copy - 复制耗材
+router.post('/filaments/:id/copy', authMiddleware, async (req, res) => {
+  try {
+
+    // 获取当前耗材数据
+    const filament = await getFilamentById(req.params.id as string);
+    if (!filament) {
+      return res.status(404).json({ success: false, error: 'Filament not found' });
+    }
+    // 清除ID
+    filament.id = null;
+
+    const copiedFilament = await addFilament(filament);
+    if (!copiedFilament) {
+      return res.status(500).json({ success: false, error: 'Failed to copy filament' });
+    }
+    res.json({ success: true, data: copiedFilament });
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Failed to deduct weight' });
+  }
+});
+
 // ============ 设置相关路由 ============
 
 // GET /api/settings - 获取设置

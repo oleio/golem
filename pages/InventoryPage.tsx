@@ -3,7 +3,7 @@ import { useI18n } from '../i18n';
 import { FilamentStatus, Filament } from '../types';
 import FilamentModal from '../components/FilamentModal';
 import DeductModal from '../components/DeductModal';
-import { fetchFilaments, createFilament, updateFilament as updateFilamentAPI, deductFilamentWeight } from '../lib/api';
+import { fetchFilaments, createFilament, updateFilament as updateFilamentAPI, copyFilament , deductFilamentWeight } from '../lib/api';
 
 const InventoryPage = () => {
   const { t } = useI18n();
@@ -59,6 +59,14 @@ const InventoryPage = () => {
     setEditingFilament(filament);
     setIsModalOpen(true);
   };
+const handleCopy = (filament: Filament) => {
+    // 无需状态
+    setLoading(true);
+    await copyFilament(filament.id);
+    const data = await fetchFilaments();
+    setFilaments(data);
+    setLoading(false);
+};
 
   const handleAddNew = () => {
     setEditingFilament(undefined);
@@ -253,21 +261,29 @@ const InventoryPage = () => {
                                         </div>
                                     </td>
                                     <td className="p-4">
-                                        <div className="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <div
+                                            className="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <button
-                                              onClick={() => handleDeduct(f)}
-                                              className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
-                                              title="Quick Deduct"
+                                                onClick={() => handleDeduct(f)}
+                                                className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
+                                                title="Quick Deduct"
                                             >
                                                 <span className="material-symbols-outlined text-[20px]">remove</span>
                                             </button>
                                             <button
-                                              onClick={() => handleEdit(f)}
-                                              className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
+                                                onClick={() => handleEdit(f)}
+                                                className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
                                             >
                                                 <span className="material-symbols-outlined text-[20px]">edit</span>
                                             </button>
-                                            <button className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-red-50 dark:hover:bg-red-500/20 hover:text-red-600 dark:hover:text-red-400 transition-colors shadow-sm">
+                                            <button
+                                                onClick={() => handleCopy(f)}
+                                                className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
+                                            >
+                                                <span className="material-symbols-outlined text-[20px]">copy</span>
+                                            </button>
+                                            <button
+                                                className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-red-50 dark:hover:bg-red-500/20 hover:text-red-600 dark:hover:text-red-400 transition-colors shadow-sm">
                                                 <span className="material-symbols-outlined text-[20px]">delete</span>
                                             </button>
                                         </div>

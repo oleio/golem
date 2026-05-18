@@ -112,6 +112,24 @@ export async function fetchFilament(id: string): Promise<Filament | null> {
   }
 }
 
+// 复制单个耗材
+export async function copyFilament(id: string): Promise<Filament | null> {
+  try {
+    const response = await fetch(`${API_BASE}/filaments/${id}/copy`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+    });
+    const result = await response.json();
+    if (result.success) {
+      return result.data;
+    }
+    return null;
+  } catch (error) {
+    console.error('Error copy filament:', error);
+    return null;
+  }
+}
+
 // 创建耗材
 export async function createFilament(filament: Omit<Filament, 'id' | 'status'>): Promise<Filament | null> {
   try {
