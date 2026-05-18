@@ -280,7 +280,7 @@ const handleCopy = async (filament: Filament) => {
                                                 onClick={() => handleCopy(f)}
                                                 className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
                                             >
-                                                <span className="material-symbols-outlined text-[20px]">copy</span>
+                                                <span className="material-symbols-outlined text-[20px]">stack</span>
                                             </button>
                                             <button
                                                 className="p-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-red-50 dark:hover:bg-red-500/20 hover:text-red-600 dark:hover:text-red-400 transition-colors shadow-sm">
